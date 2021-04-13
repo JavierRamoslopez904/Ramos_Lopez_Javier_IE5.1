@@ -39,7 +39,7 @@ public class Methods {
 		System.out.println("0.- Salir de la aplicación");
 		System.out.println("===========================");
 
-		System.out.println("Introduzca la opción elegida");
+		System.out.println("Introduzca la opción elegida!");
 	
 		opcion = S.nextInt();
 		
