@@ -19,13 +19,15 @@ public class Videogame implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// Atributos
-	private static int codigo_videojuego;
+	private int codigo_videojuego = 0;
 
 	private String nombre_videojuego;
 
 	private Plataforma plataforma;
 
 	private LocalDate fecha_de_lanzamiento;
+	
+	public static Integer contador = 0;
 	
 	//Atributo boolean para determinar si el usuario a guardado los cambios antes de salir
 	private boolean estado;
@@ -38,7 +40,8 @@ public class Videogame implements Serializable {
 
 		this.plataforma = pla;
 			
-		codigo_videojuego = codigo_videojuego + 1;
+		contador++;
+		codigo_videojuego = contador;
 	
 	}
 
@@ -68,7 +71,7 @@ public class Videogame implements Serializable {
 	/**
 	 * @return the codigo_videojuego
 	 */
-	public static int getCodigo_videojuego() {
+	public  int getCodigo_videojuego() {
 		return codigo_videojuego;
 	}
 

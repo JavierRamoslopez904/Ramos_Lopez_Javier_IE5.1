@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.io.*;
 
 /**
@@ -24,7 +25,6 @@ public class Methods {
 	
 	Videogame v3 = new Videogame(false);
 	public void menu() {
-		try {
 		int opcion;
 		do {
 		System.out.println("===========================");
@@ -42,7 +42,7 @@ public class Methods {
 		System.out.println("Introduzca la opción elegida!");
 	
 		opcion = S.nextInt();
-		
+		checkFile();
 		switch(opcion) {
 		case 1:
 			addVideogame();
@@ -63,11 +63,9 @@ public class Methods {
 			exitAplication();
 		break;
 		}
+
 		}while(opcion != 0);
-		}catch(Exception e) {
-			System.out.println("ERROR, NO HA INTRODUCIDO UN VALOR DE CARÁCTER STRING, REINICIE LA APLICACIÓN");
-			e.printStackTrace();
-		}
+
 	}
 
 	/**
@@ -84,7 +82,8 @@ public class Methods {
 		int anio, mes, dia;
 		System.out.println("Introduzca los datos del videojuego");
 		System.out.println("Nombre del videojuego :");
-		videogame_name = S.next();
+		S.nextLine();
+		videogame_name = S.nextLine();
 		System.out.println("Plataforma principal :");
 		plataform = S.next();
 		System.out.println("Fecha de lanzamiento");
@@ -103,9 +102,8 @@ public class Methods {
 		videogames.add(v1);
 
 		System.out.println("Videojuego añadido");
-		}catch(Exception e) {
-			System.out.println("ERROR, NO HA INTRODUCIDO UN VALOR CORRESPONDIENTE AL TIPO DE DATO DE SU VARIABLE, REINICIE EL PROGRAMA");
-			e.printStackTrace();
+		}catch(InputMismatchException e) {
+			System.err.println("ERROR, NO HA INTRODUCIDO UN VALOR CORRESPONDIENTE AL TIPO DE DATO DE SU VARIABLE, REINICIE EL PROGRAMA");
 		}
 	}
 
@@ -124,6 +122,10 @@ public class Methods {
 		System.out.println("Fecha de lanzamiento : ");
 		videogames.stream().map(v->v.getFecha_de_lanzamiento()).forEach(System.out::println);
 		
+		if(videogames.isEmpty()) {
+			System.out.println("¡¡NO HAY VALORES EN LA COLECCIÓN!!");
+		}
+	
 	}
 
 	/**
@@ -145,9 +147,6 @@ public class Methods {
 		for(Videogame v : videogames) {
 			//Si el codigo introducido por el usuario coincide con algún codigo establecido antes
 			if(codigo == v.getCodigo_videojuego()) {
-				//Mostrará la información de ese objeto
-				System.out.println(v.toString());
-				
 				//Guardará ese objeto en la variable
 				tache = v;
 			}else {
@@ -156,6 +155,7 @@ public class Methods {
 		}
 		//Ahora eliminaremos ese objeto metido en la variable
 		videogames.remove(tache);
+		System.out.println("La descripción del videojuego a eliminar es la siguiente : ");
 		videogames.stream().forEach(System.out::println);
 		}catch(Exception e) {
 			System.out.println("ERROR, NO HA INTRODUCIDO UN VALOR CORRESPONDIENTE AL TIPO DE DATO DE SU VARIABLE, REINICIE EL PROGRAMA");
@@ -201,7 +201,7 @@ public class Methods {
 			System.out.println("¿Desea continuar con la carga y restaurar los datos del archivo?(S/N)");
 			opcion = S.next();
 			if(opcion.equals("S")) {
-				System.out.println("¡¡ARCHIVOS RESTAURADOS!!");
+				readFile("./videojuego.dat",videogames);
 			}else if(opcion.equals("N")) {
 				System.out.println("¡¡LOS ARCHIVOS SE HAN MANTENIDO EN EL FICHERO!!");
 			}
@@ -296,6 +296,7 @@ public class Methods {
 			opcion = S.next();
 			if(opcion.equals("S")) {
 				v3.setEstado(true);
+				readFile("./videojuego.dat",videogames);
 				System.out.println("!!TODO ESTÁ BIEN GUARDADO, VUELVA PRONTO¡¡");
 			}else if(opcion.equals("N")) {
 				System.out.println("EL CONTENIDO DEL FICHERO SE HA BORRADO, ASEGÚRESE LA PRÓXIMA VEZ DE QUE HA GUARDADO LOS CAMBIOS");
@@ -305,6 +306,17 @@ public class Methods {
 		}catch(Exception e) {
 			System.out.println("ERROR, NO HA INTRODUCIDO UN VALOR CORRESPONDIENTE AL TIPO DE DATO DE SU VARIABLE, REINICIE EL PROGRAMA");
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Este método servirá para comprobar si el fichero existe
+	 */
+	public void checkFile() {
+		if(v3.isEstado() == false) {
+			System.out.println("¡¡EL FICHERO VIDEOJUEGO.DAT NO TIENE DATOS GRABADOS!!");
+		}else {
+			System.out.println("EL FICHERO VIDEOJUEGO.DAT SE HA CREADO");
 		}
 	}
     
