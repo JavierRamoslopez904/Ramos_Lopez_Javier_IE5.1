@@ -21,10 +21,10 @@ public class Validar {
 	 */
 	public static boolean validar(LocalDate l) {
 		if (l.isBefore(LocalDate.now())) {
-			System.out.println("La fecha es anterior a la fecha de publicación del videojuego");
+			System.out.println("!!Fecha correcta¡¡");
 			return true;
 		} else {
-			System.out.println("Fecha incorrecta");
+			System.err.println("!!Fecha incorrecta¡¡");
 			return false;
 		}
 	}

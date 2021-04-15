@@ -44,7 +44,6 @@ public class Methods {
 				System.out.println("Introduzca la opción elegida!");
 
 				opcion = S.nextInt();
-//				checkFile();
 				switch (opcion) {
 				case 1:
 					addVideogame();
@@ -66,7 +65,7 @@ public class Methods {
 					break;
 				}
 
-			} while (true);
+			} while (opcion != 0);
 		} catch (Exception e) {
 			System.err.println("ERROR, ¡¡HA INTRODUCIDO UN DATO ERRÓNEO!!");
 		}
@@ -312,7 +311,6 @@ public class Methods {
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR, NO HA INTRODUCIDO UN VALOR CORRESPONDIENTE AL TIPO DE DATO DE SU VARIABLE, REINICIE EL PROGRAMA");
-			e.printStackTrace();
 		}
 	}
 
