@@ -7,5 +7,5 @@ package Ejercicio1;
  *
  */
 public enum Plataforma {
-	DS,WII,PS2,PS3,PS4,XBOX,PC
+	DS, WII, PS2, PS3, PS4, XBOX, PC
 }

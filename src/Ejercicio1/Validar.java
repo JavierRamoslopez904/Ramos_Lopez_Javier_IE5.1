@@ -17,7 +17,7 @@ public class Validar {
 	 * Este método se encargará de determinar si la fecha de lanzamiento del videojuego es correcta o no
 	 * 
 	 * @param l
-	 * @return 
+	 * @return
 	 */
 	public static boolean validar(LocalDate l) {
 		if (l.isBefore(LocalDate.now())) {
@@ -28,14 +28,14 @@ public class Validar {
 			return false;
 		}
 	}
-	
+
 	public static boolean validarPlataforma(String platafo) {
-		for(Plataforma c : Plataforma.values()) {
-			if(c.name().contains(platafo)) {
+		for (Plataforma c : Plataforma.values()) {
+			if (c.name().contains(platafo)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 }

@@ -26,23 +26,23 @@ public class Videogame implements Serializable {
 	private Plataforma plataforma;
 
 	private LocalDate fecha_de_lanzamiento;
-	
+
 	public static Integer contador = 0;
-	
-	//Atributo boolean para determinar si el usuario a guardado los cambios antes de salir
+
+	// Atributo boolean para determinar si el usuario a guardado los cambios antes de salir
 	private boolean estado;
 
 	// Constructor
-	public Videogame(String nom_vid,LocalDate fecha, Plataforma pla) {
+	public Videogame(String nom_vid, LocalDate fecha, Plataforma pla) {
 		this.nombre_videojuego = nom_vid;
 
 		this.fecha_de_lanzamiento = fecha;
 
 		this.plataforma = pla;
-			
+
 		contador++;
 		codigo_videojuego = contador;
-	
+
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class Videogame implements Serializable {
 	public Videogame(boolean estado) {
 		this.estado = estado;
 	}
-	
-	//Métodos getters y setters del atributo booleano estado
+
+	// Métodos getters y setters del atributo booleano estado
 	/**
 	 * @return the estado
 	 */
@@ -61,7 +61,8 @@ public class Videogame implements Serializable {
 	}
 
 	/**
-	 * @param estado the estado to set
+	 * @param estado
+	 *            the estado to set
 	 */
 	public void setEstado(boolean estado) {
 		this.estado = estado;
@@ -71,7 +72,7 @@ public class Videogame implements Serializable {
 	/**
 	 * @return the codigo_videojuego
 	 */
-	public  int getCodigo_videojuego() {
+	public int getCodigo_videojuego() {
 		return codigo_videojuego;
 	}
 
@@ -110,14 +111,15 @@ public class Videogame implements Serializable {
 	}
 
 	/**
-	 * Este método se va a encargar de mostrarnos si la plataforma introducida por el usuario es correcta o no,
-	 * y en el caso de que no sea correcta, lanzará una excepción
+	 * Este método se va a encargar de mostrarnos si la plataforma introducida por el usuario es correcta o no, y en el caso de que no sea correcta, lanzará una
+	 * excepción
+	 * 
 	 * @param plataforma
 	 */
 	public void setPlataforma(String plataforma) {
-		if(Validar.validarPlataforma(plataforma)) {
+		if (Validar.validarPlataforma(plataforma)) {
 			this.plataforma = Plataforma.valueOf(plataforma);
-		}else {
+		} else {
 			System.out.println("ERROR, el campo Plataforma, está vacío");
 			throw new IllegalArgumentException();
 		}
@@ -135,9 +137,9 @@ public class Videogame implements Serializable {
 	 *            the fecha_de_lanzamiento to set
 	 */
 	public void setFecha_de_lanzamiento(LocalDate fecha_de_lanzamiento) {
-		if(Validar.validar(fecha_de_lanzamiento)) {
+		if (Validar.validar(fecha_de_lanzamiento)) {
 			this.fecha_de_lanzamiento = fecha_de_lanzamiento;
-		}else {
+		} else {
 			System.out.println("ERROR en la fecha, es superior a la actual");
 		}
 	}

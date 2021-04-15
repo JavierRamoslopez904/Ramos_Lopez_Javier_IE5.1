@@ -8,12 +8,12 @@ import java.util.HashMap;
 
 public class Principal_Program {
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 
 		Methods m = new Methods();
-		
+
 		m.menu();
-		
+
 	}
 
 }
